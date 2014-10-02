@@ -1,0 +1,104 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%2345678901234567890123456789012345678901234567890123456789012345678901234567890
+%        1         2         3         4         5         6         7         8
+
+\documentclass[letterpaper, 10 pt, conference]{ieeeconf}  % Comment this line out
+                                                          % if you need a4paper
+%\documentclass[a4paper, 10pt, conference]{ieeeconf}      % Use this line for a4
+                                                          % paper
+
+\IEEEoverridecommandlockouts                              % This command is only
+                                                          % needed if you want to
+                                                          % use the \thanks command
+\overrideIEEEmargins
+
+% The following packages can be found on http:\\www.ctan.org
+
+\usepackage{graphics} % for pdf, bitmapped graphics files
+\usepackage{epsfig} % for postscript graphics files
+%\usepackage{mathptmx} % assumes new font selection scheme installed
+\usepackage{times} % assumes new font selection scheme installed
+\usepackage{amsmath} % assumes amsmath package installed
+\usepackage{amssymb}  % assumes amsmath package installed
+\usepackage{subfig} % subfigure is deprecated, use subfig instead!! 
+\usepackage{url}
+\usepackage{setspace}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{subfloat}
+\usepackage{flushend}
+\usepackage{sidecap}
+
+\usepackage[]{graphicx}
+\usepackage{color}
+
+% helper command to revise the paper
+\usepackage[tikz]{bclogo}
+\usepackage{lipsum}
+\definecolor{bgblue}{RGB}{245,243,253}
+\definecolor{ttblue}{RGB}{91,194,224}
+\newcommand{\hilight}[1]{\colorbox{orange}{#1}}
+
+\usepackage{tikz}
+\usetikzlibrary{arrows,fit,shapes,automata,topaths,petri}
+\usetikzlibrary{decorations.pathreplacing,decorations.pathmorphing,calc,backgrounds,fit,plotmarks}
+\usetikzlibrary{positioning}
+
+%\usepackage{algorithm}
+%\usepackage{algpseudocode}
+\usepackage{newalg}
+\usepackage{soul}
+\usepackage[]{caption}
+\usepackage{verbatim}
+\usepackage{arydshln}
+%\usepackage[caption=false,font=footnotesize]{subfig}
+\captionsetup{font=footnotesize}
+
+
+
+\title{\LARGE \bf
+My Fancy Title
+}
+
+\author{Abraham Lincoln \and Henry Ford 
+\thanks{M.\ Hjelm, C.\ H.\ Ek and D.\ Kragic are with the Centre for
+Autonomous Systems and the Computer Vision and Active Perception Lab, CSC, KTH Royal Institute of Technology, Stockholm, Sweden. Email:
+\texttt{ foo@foooo.com }}%
+~\thanks{This work was supported by..}}
+
+\begin{document}
+
+
+
+\maketitle
+\thispagestyle{empty}
+\pagestyle{empty}
+
+
+%%%%% SECTION: ABSTRACT %%%%% 
+\input{abstract}
+
+%%%%% SECTION: INTRODUCTION %%%%% 
+\input{introduction}
+
+%%%%% SECTION: RELATED WORK %%%%% 
+\input{relatedwork}
+
+%%%%% SECTION: METHODOLOGY %%%%% 
+\input{methodology}
+
+%%%%% SECTION: EXPERIMENTS %%%%% 
+\input{experiments}
+
+%%%%% SECTION: CONCLUSION %%%%% 
+\input{conclusion}
+
+%%%%% SECTION: TODO %%%%% 
+\input{todo}
+
+
+\bibliographystyle{unsrt}
+\bibliography{references}
+
+
+\end{document}
