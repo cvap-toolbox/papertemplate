@@ -1,1 +1,4 @@
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at est in orci interdum eleifend. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Quisque mollis rutrum congue. Phasellus tortor justo, rhoncus eget lobortis ac, lacinia non justo. Donec dignissim dolor nec venenatis volutpat. Nam lacinia tincidunt lorem at feugiat. Vivamus dignissim erat ac neque vestibulum pulvinar. Nullam ullamcorper leo a velit faucibus vestibulum. Sed sagittis tristique dapibus. Ut iaculis, nisl sit amet feugiat dignissim, dolor justo dignissim nulla, vel rutrum ligula ipsum ut turpis. Nam laoreet scelerisque orci a cursus. Nam condimentum sodales lorem eu laoreet. Vivamus ultricies dui at magna efficitur laoreet. Maecenas id ligula sodales, finibus dui ac, convallis ipsum. Donec ullamcorper justo id eleifend viverra. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+This paper presents an approach for learning affordances from a human demonstrator 
+
+
+1. state the problem2. say why it is interesting3. say what your solution achieves4. say what follows from your solution.

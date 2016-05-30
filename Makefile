@@ -1,4 +1,4 @@
-FILE = 20XX_Conference_Name
+FILE = 2016_IROS
 
 pdf: *.tex
 	pdflatex -shell-escape $(FILE)

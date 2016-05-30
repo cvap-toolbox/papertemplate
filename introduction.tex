@@ -1,16 +1,72 @@
 \section{Introduction}\label{introduction}
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at est in
-orci interdum eleifend. Class aptent taciti sociosqu ad litora torquent
-per conubia nostra, per inceptos himenaeos. Quisque mollis rutrum
-congue. Phasellus tortor justo, rhoncus eget lobortis ac, lacinia non
-justo. Donec dignissim dolor nec venenatis volutpat. Nam lacinia
-tincidunt lorem at feugiat. Vivamus dignissim erat ac neque vestibulum
-pulvinar. Nullam ullamcorper leo a velit faucibus vestibulum. Sed
-sagittis tristique dapibus. Ut iaculis, nisl sit amet feugiat dignissim,
-dolor justo dignissim nulla, vel rutrum ligula ipsum ut turpis. Nam
-laoreet scelerisque orci a cursus. Nam condimentum sodales lorem eu
-laoreet. Vivamus ultricies dui at magna efficitur laoreet. Maecenas id
-ligula sodales, finibus dui ac, convallis ipsum. Donec ullamcorper justo
-id eleifend viverra. Lorem ipsum dolor sit amet, consectetur adipiscing
-elit.
+Imagine you are part of an experiment where you are shown a set of
+objects and told that some of the objects affords a specific action. The
+researcher gives you new set of objects and ask you to classify them as
+either affording the action or not. How would you reason? Most probably,
+you would reason by similarity, that is, which features were common to
+the objects that you were given and how are the new objects features
+similar to the previous ones.
+
+There are two reasoning strategies at work here. Firstly, the grouping
+of objects that affords or doesn't afford the action. Were we would
+explain the grouping based on similar within-group features grounded in
+some semantic meaning. Secondly, reasoning about new objects as
+belonging to a specific group by reasoning about similarity to the
+objects in the groups. Somehow we managed to untangle the invariant
+features of the groups and found a way of measuring similarity.
+
+Skill-transfer from human to human works in the same manner as in the
+above experiment. We show some objects, explain the underlying invariant
+features, similarities and how the action works. The learner can then
+use the acquired skills to explore and act in the environment using the
+invariant knowledge to extrapolate and solve tasks. An important point
+is that that the transfer is not an exact copy due to the difference in
+semantic and sensory capabilities of the teacher and learner.
+
+In the future it is reasonable to assume that this skill-transfer will
+also happen between human and robots. Communication would be greatly
+enhanced by giving the robot the ability to ground the sensory input in
+semantic meaning, that is, find the the invariant features of the group
+and form metrics over these to discriminate which objects belongs to the
+group or not. Further on, utilizing this learning strategy as opposed to
+downloading an already trained classifier, would lead to greater
+adaptability and autonomy as the experience would be grounded in the
+robots own experience. For example, Modayil et al.
+\cite{Modayil:2008it}, explored sensory grounding approach for learning
+about objects to perform recognition and actions on experienced objects.
+
+If we go even further we can assume that in the future skill transfer
+will also happen from robot to human. Here semantic meaning grounded in
+sensory input will be the only way to transfer knowledge as there is yet
+no known way of programming a human brain for learning complex tasks.
+
+Previous approaches to learning affordances have focused on\ldots{}.
+
+Most of the above mentioned approaches focuses on learning affordances
+using large datasets that does not discover the invariant features of
+the object and where the focus has shifted from grounding to model
+accuracy. These models while useful for detection will not be very
+helpful in human-robot interaction.
+
+Contrary our model focuses on learning from few data points and more
+generic features as this more relevant to the above described scenarios.
+And as argued in {[}french guy{]} we are interested learning what
+features are similar within a group, and how to find a measure of
+similarity between new objects and objects in the group. This similarity
+should preferably be learned from the data.
+
+In \cite{Hjelm:2015hw} we showed that feature selection was possible by
+re-representing the data such that similar examples are close and
+non-similar items are far apart. This enabled the agent to correctly
+learn, pick and execute grasps for novel objects, fulfilling constraints
+inherent in the task. In addition it learned the features relevant for
+deciding the relevant grasp for the specific task.
+
+In this paper we follow a similar approach for learning affordances.
+From a
+
+Lära eigen spectrumet dominanta plotta Renauds
+
+Hur annorlunda är representationen för de olika tasken projektion av
+data punkter overlay. Vilka task är korrelerade?

@@ -1,14 +1,73 @@
-\input{fig_example} \# Experiments Lorem ipsum dolor sit amet,
-consectetur adipiscing elit. Sed at est in orci interdum eleifend. Class
-aptent taciti sociosqu ad litora torquent per conubia nostra, per
-inceptos himenaeos. Quisque mollis rutrum congue. Phasellus tortor
-justo, rhoncus eget lobortis ac, lacinia non justo. Donec dignissim
-dolor nec venenatis volutpat. Nam lacinia tincidunt lorem at feugiat.
-Vivamus dignissim erat ac neque vestibulum pulvinar. Nullam ullamcorper
-leo a velit faucibus vestibulum. Sed sagittis tristique dapibus. Ut
-iaculis, nisl sit amet feugiat dignissim, dolor justo dignissim nulla,
-vel rutrum ligula ipsum ut turpis. Nam laoreet scelerisque orci a
-cursus. Nam condimentum sodales lorem eu laoreet. Vivamus ultricies dui
-at magna efficitur laoreet. Maecenas id ligula sodales, finibus dui ac,
-convallis ipsum. Donec ullamcorper justo id eleifend viverra. Lorem
-ipsum dolor sit amet, consectetur adipiscing elit.
+\section{Experiments}\label{experiments}
+
+In evaluating our approach, we want to verify the following:
+
+\begin{itemize}
+\tightlist
+\item
+  How our method performs compared to k-NN
+\item
+  That the ordering of the nearest neighbors is reasonable
+\item
+  That the features that LMCA picks out as important for an affordance
+  resonates with what could be expected for the affordance. This would
+  mean that the robot has actually grounded semantic meaning in its
+  sensory input.
+\item
+  That the correlations described by \(M\) resonates with what could be
+  expected for the affordance.
+\end{itemize}
+
+In addition we are interested in investigating the similarity between
+affordances by comparing distances between the covariance matrices,
+\(M\), for the different affordances. Similar affordances should be
+close and be a good initial guess for learning a new affordance.
+
+Finally we are interested in mapping local features to the parts of the
+objects. For an example, for hangable objects we would like our metric
+to discover the ``hook'' part of object. This will let the robot detect
+salient parts of the object and reflect on how that part can be used.
+
+\subsection{Data Collection}\label{data-collection}
+
+We perform the collection of the object data using a Kinect camera with
+objects placed on a flat surface in front of the robot. The robot
+observes and segments out the object and records features over the
+object. Each object is associated with with a \(D\)-dimensional binary
+vector encoding the affordances.
+
+\subsection{Learning the Distance
+Metric}\label{learning-the-distance-metric}
+
+We preprocess the non-histogram features by centering and scaling to
+unit variance. To evaluate the learning we run the penalized LMCA,
+non-penalized LMCA, LMNN and k-NN a 100 times for \(5\) neighbors, using
+random splits of the collected data with a ratio of 70\% training and
+30\% test data. We also make sure that each split contains at least 25\%
+positive and negative examples. The reason for this lies in the
+formulation of LMNN that allows instances some slack in fulfilling the
+optimization constraints. The gradient descent optimization is thus
+prone to allowing the smaller class to violate the constraints while
+optimizing for the bigger class. If the positive example's relevant
+features have been erased the invariant features becomes hard to detect.
+
+As can be seen in Figure \ref{fig:knnvslmnn} penalized LMNN is superior
+to k-NN performing better, roughly by 3-7\% for all grasps classes. The
+curves for the class agreement as a function of the nearest neighbor in
+Figure \ref{fig:knnvslmnn_distance}, are also consistent for the LMNN
+while k-NN declines quite rapidly as the order increases. Further on,
+k-NN has much more variance.
+
+\subsection{Affordance Invariant Features and Feature
+Correlations}\label{affordance-invariant-features-and-feature-correlations}
+
+Feature selection in our context means that the LMNN diagonal have low
+to zero values for irrelevant features and high for relevant. One way of
+analyzing the selection is to look at the magnitude value of the column
+vectors of \(L\) and standard deviation across the 100 runs.
+
+\subsection{Salient Point
+Illustrations}\label{salient-point-illustrations}
+
+\subsection{Affordance Metrics
+Distances}\label{affordance-metrics-distances}
