@@ -187,9 +187,12 @@ short list with motivations when needed,
   SIFTs over a set of labeled images containing the following textures:
   glass, carton, porcelain, metal, plastic and wood. In addition we
   extract the output of the fifth layer of a GooleLeNet CNN
-  concatentating it with the Fisher vectors. We use the final feature
-  vector to train 6 1-against-\(K\) linear SVMs. The ouput from the 6
-  SVMs when classifying the object can be considered as a score of how
-  similar each object is to one of the texturess and we use this as a
-  feature vector.
+  concatentating it with the Fisher vectors. These two features
+  complement each other, the Fisher vector trained on textures, and the
+  GooleLeNet in that certain objects are more likely to be made of
+  specific material. We use the final feature vector to train 6
+  1-against-\(K\) linear SVMs. The ouput from the 6 SVMs when
+  classifying the object can be considered as a score of how similar
+  each object is to one of the texturess and we use this as the feature
+  vector.
 \end{itemize}
