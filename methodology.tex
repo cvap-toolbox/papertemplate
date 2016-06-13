@@ -1,17 +1,19 @@
 \section{Methodology}\label{methodology}
 
-A straight forward approach to group and measure group to object
-distances would be to use a k-Nearest Neighbor (k-NN) classifier.
-However, with few data points a comparison based approach like k-NN is
-sensible to outliers and comparisons in high dimensions are complicated
-by the curse of dimensionality. In addition the intrinsic metric of the
-data might not be reflected by the Euclidian metric.
+A straight forward approach to categorization and measuring object to
+category distances would be to use a k-NN classifier with a Euclidian
+metric. However, with few data points a comparison based approach like
+k-NN is sensible to outliers and comparisons in high dimensions are
+complicated by the curse of dimensionality. In addition the intrinsic
+metric of the data might not be reflected by the Euclidian metric.
 
 A more sensible approach would therefore be to learn the metric from the
 data and do it such that irrelevant features are discounted. To this end
 we employ a specific set of metric learning techniques, called
 Mahalanobis metric learning, that learns a transform of the data such
 similar items are close and non-similar items are far away.
+
+\input{metric_learning_explanation}
 
 \subsection{Mahalanobis Metric
 Learning}\label{mahalanobis-metric-learning}
@@ -31,7 +33,8 @@ Euclidian metric is thus equivalent to applying a linear transform and
 then computing the Euclidian distance. The common theme for these metric
 learning algorithms is that they work on class labeled data trying to
 find a matrix that pushes similar items closer while pushing non-similar
-items further away. See {[}X{]} for an excellent review.
+items further away. See Kulis et al. \cite{Kulis:2012tx} for an
+excellent survey.
 
 In our previous work \cite{Hjelm:2015hw} we used the Large Margin
 Nearest Neighbor (LMNN) model due to Weinberg et al.
@@ -43,11 +46,11 @@ diagonal could be considered feature weights and although it gave
 favorable results in terms of feature selection and grasp execution, it
 was unsatisfactory in modeling dependencies between features.
 
-In this paper we instead use the Large Margin Component Analysis (LMCA)
-model due to Torresani et al. \cite{Torresani:2006wb}.
-\cite{Torresani:2006wb} formulate an objective function similar to
-\cite{Weinberger:2009to} but where the optimization is carried out over
-\(\mathbf{L}\) using gradient descent.
+Here we instead use the Large Margin Component Analysis (LMCA) model due
+to Torresani et al. \cite{Torresani:2006wb}. \cite{Torresani:2006wb}
+formulate an objective function similar to \cite{Weinberger:2009to} but
+where the optimization is carried out over \(\mathbf{L}\) using gradient
+descent.
 
 \small 
 
@@ -82,10 +85,11 @@ By optimizing over \(\mathbf{L}\) instead of \(\mathbf{M}\), for a
 dataset of dimension \(D\), we can let \(\mathbf{L}\) be \(d \times D\)
 where \(d\) is a variable that can be set by cross-validation. Learning
 \(\mathbf{L}\) will then amount to learning \(dD\) variables instead of
-\(D^2\), reducing overfitting for small but high-dimensional datasets.
-Further on, the dimensionality reduction is learned simultaneously while
-in \cite{Weinberger:2009to} the dimensionality reduction is done using
-PCA before learning \(\mathbf{M}\).
+\(D^2\) when learning \(M\). This reduces overfitting for small but
+high-dimensional datasets and in addition dimensionality reduction is
+learned simultaneously while in \cite{Weinberger:2009to} the
+dimensionality reduction is done using PCA before learning
+\(\mathbf{M}\).
 
 The drawback of this approach is that since the objective function is no
 longer convex we will discover local minima. \cite{Torresani:2006wb}
@@ -97,18 +101,23 @@ Learning matrices that re-represents the input data opens up for
 analysis of the correlation between different features by considering
 \(M\). The magnitude of the column vectors of \(L\) also works as an
 importance measure for each of the features. If we are interested in
-learning which features are important for a specific affordance we woudl
+learning which features are important for a specific affordance we would
 want all columns in the \(L\) matrix connected to non-important features
 to have zero or close to zero magnitude.
 
-We therefore introduce the elastic net regularization of {[}Zou{]},
-which penalizes the column vectors of \(L\) using the sum of the \(L_1\)
-and \(L_2\) norm. If we view the column vectors of \(L\) in Eq.
-\ref{lossfun} as a form of \(D\) linear regression functions that we
-simultaneously optimize it would make sense to regularize them for
-cancelation effects and to curb any blowing up of specific column. In
-addition having few data points compared to the number of parameters,
-that is, \(N \ll Dd\), we would like to avoid overfitting.
+We therefore introduce the elastic net regularization of
+\cite{Cimpoi:2015eg}, which penalizes the column vectors of \(L\) using
+the sum of the \(L_1\) and \(L_2\) norm. If we view the column vectors
+of \(L\) in Eq. \ref{lossfun} as a form of \(D\) linear regression
+functions that we simultaneously optimize it would make sense to
+regularize them for cancelation effects and to curb any blowing up of a
+specific column. From our experience LMNN is quite sensitivy to the
+parameters and easily overfits when having few data points compared to
+the number of parameters, that is, \(N \ll Dd\), and using
+regularization helps to avoid some of it. In addition the elastic net
+regularization has the benefit of keeping groups of correlated variables
+whereas the \(l_1\) regularization usually keeps only one of them
+\cite{Cimpoi:2015eg}.
 
 The modified elastic net regularized loss function now has the form,
 
@@ -125,12 +134,22 @@ The modified elastic net regularized loss function now has the form,
 \label{lossfunderivative}
 \begin{aligned}
 & \frac{d\epsilon_{new}(\mathbf{L})}{d\mathbf{L}} =   \lambda_1  \tilde{L}_1 + \lambda_2  \tilde{L}_2 + \frac{d\epsilon(\mathbf{L})}{d\mathbf{L}} \\
-& (\tilde{L}_1)_{ij} = sign(L_{ij}) [FIXME] \\
-& (\tilde{L}_2)_{ij} = 2 L_{ij}
+& (\tilde{L}_1)_{ij} = sign(L_{ij}), \; \; \; (\tilde{L}_2)_{ij} = 2 L_{ij}.
 \end{aligned}
 \end{equation}
 
-. \normalsize
+\normalsize
+
+When \(L{ij}\) is zero the derivate of the \(l_1\) norm is singular. We
+define its derivate at zero as,
+
+\begin{equation}
+ ( \tilde{L}_1 )_{ij}_ =
+  \begin{cases}
+    1   & dL > \lambda \\
+    -1  & dL < \lambda \\
+  \end{cases}
+\end{equation}
 
 \begin{comment}
 [We should maybe investigate if the penalization has the same effect on the eigenvalues as ridge regression ]
@@ -139,10 +158,10 @@ The modified elastic net regularized loss function now has the form,
 \subsection{Features}\label{features}
 
 We want to use features that have at least a weak semantic meaning to a
-human observer and that are as generic as possible. There is evidence
-that humans captures both global and local features when
-laerning\ldots{}{[}CITATION{]}. Due to lack of space we will provide a
-short list with motivations when needed,
+human observer and that are as generic as possible. Affordances can from
+a human perspective be understood in both global and local properties of
+the object we therefore try to cover both. Due to lack of space we will
+provide a short list with motivations when needed.
 
 \begin{itemize}
 \tightlist
@@ -162,7 +181,7 @@ short list with motivations when needed,
   \textbf{Intensity and Gradient Filters} - We apply gradient filters of
   first, second order over the 2D window containing the object along, in
   addition we extract the intensity values of the image. Since pixels
-  correpsond to the points on the point cloud of the object we map the
+  correspond to the points on the point cloud of the object we map the
   values on to each point. We then compute a count normalized histograms
   (CNH) for all the points of the object for each of the filter values
   and the intensity values.
@@ -183,16 +202,17 @@ short list with motivations when needed,
   cloud using a small set of 40 keywords. We then extract the histogram
   of the keywords for the object.
 \item
-  \textbf{Texture} - We learn a Fisher vector representation from dense
-  SIFTs over a set of labeled images containing the following textures:
-  glass, carton, porcelain, metal, plastic and wood. In addition we
+  \textbf{Texture} - We employ a similar approach to
+  \cite{Cimpoi:2015eg} by learning a Fisher vector representation from
+  dense SIFTs over a set of labeled images containing the following
+  textures: glass, carton, porcelain, metal, plastic and wood. We also
   extract the output of the fifth layer of a GooleLeNet CNN
-  concatentating it with the Fisher vectors. These two features
+  concatenating it with the Fisher vectors. These two features
   complement each other, the Fisher vector trained on textures, and the
-  GooleLeNet in that certain objects are more likely to be made of
+  GooleLeNet in that certain objects are more likely to be made of a
   specific material. We use the final feature vector to train 6
-  1-against-\(K\) linear SVMs. The ouput from the 6 SVMs when
+  1-against-\(K\) linear SVMs. The output from the 6 SVMs when
   classifying the object can be considered as a score of how similar
-  each object is to one of the texturess and we use this as the feature
+  each object is to one of the textures and we use this as the feature
   vector.
 \end{itemize}

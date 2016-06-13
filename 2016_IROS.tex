@@ -44,6 +44,8 @@
 \usetikzlibrary{decorations.pathreplacing,decorations.pathmorphing,calc,backgrounds,fit,plotmarks}
 \usetikzlibrary{positioning}
 
+\usepackage{wrapfig}
+
 %\usepackage{algorithm}
 %\usepackage{algpseudocode}
 \usepackage{newalg}
@@ -53,18 +55,21 @@
 \usepackage{arydshln}
 %\usepackage[caption=false,font=footnotesize]{subfig}
 \captionsetup{font=footnotesize}
+\DeclareCaptionFont{tiny}{\scriptsize}
+
 
 \def\tightlist{} % Fixes pandoc conversion problem
 
+
 \title{\LARGE \bf
-Affordance Learning Using Penalized Metric Learning
+Discovering Affordance Bearing Features by Regularized Metric Learning
 }
 
-% \author{Martin Hjelm, Carl Henrik Ek, Danica Kragic
-% \thanks{M.\ Hjelm, C.\ H.\ Ek and D.\ Kragic are with the Centre for
-% Autonomous Systems and the Computer Vision and Active Perception Lab, CSC, KTH Royal Institute of Technology, Stockholm, Sweden. Email:
-% \texttt{ foo@foooo.com }}%
-% ~\thanks{This work was supported by..}}
+\author{Martin Hjelm, Carl Henrik Ek, Renaud Detry, Danica Kragic
+\thanks{M.\ Hjelm, C.\ H.\ Ek and D.\ Kragic are with the Centre for
+Autonomous Systems and the Computer Vision and Active Perception Lab, CSC, KTH Royal Institute of Technology, Stockholm, Sweden. Email:
+\texttt{ foo@foooo.com }}%
+~\thanks{This work was supported by..}}
 
 \begin{document}
 
@@ -88,13 +93,13 @@ Affordance Learning Using Penalized Metric Learning
 \input{methodology}
 
 %%%%% SECTION: EXPERIMENTS %%%%% 
-\input{experiments}
+% \input{experiments}
 
 %%%%% SECTION: CONCLUSION %%%%% 
 \input{conclusion}
 
 %%%%% SECTION: TODO %%%%% 
-\input{todo}
+% \input{todo}
 
 
 \bibliographystyle{unsrt}

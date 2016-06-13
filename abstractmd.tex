@@ -1,15 +1,23 @@
-This paper presents an approach for learning affordances from a human
-demonstrator
+This paper presents an approach for learning object affordances from a
+human demonstrator. One of the major problems for a robotic agent
+acquiring a deeper understanding of object affordances is grounding the
+semantic in its own sensory input. Being able to understand what in the
+representation of an object makes the object afford the action opens up
+for more efficient manipulation, interchange of objects that visually
+might not be similar, transfer learning, as well as removing the need
+for object categorization. Our approach uses a metric learning algorithm
+that learns a transform that encourages objects that affords the same
+thing to be close in space. We regularize the learning such that
+irrelevant features are penalized, allowing the agent to link what in
+the sensory input caused the object to afford the action. From this we
+show how the agent can explain what in the object is specific for an
+affordance, how the transform can be used to compare how similar two
+different affordances are and how an agent can interchange objects from
+different when the object learned on is not available.
 
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  state the problem
-\item
-  say why it is interesting
-\item
-  say what your solution achieves
-\item
-  say what follows from your solution.
-\end{enumerate}
+\begin{comment}
+1. state the problem
+2. say why it is interesting
+3. say what your solution achieves
+4. say what follows from your solution.
+\end{comment}
