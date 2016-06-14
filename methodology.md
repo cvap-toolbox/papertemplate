@@ -66,13 +66,13 @@ The modified elastic net regularized loss function now has the form,
 \end{equation}
 \normalsize
 
-When $L{ij}$ is zero the derivate of the $l_1$ norm is singular. We define its derivate at zero as,
+When $L_{ij}$ is zero the derivate of the $l_1$ norm is singular. We define its derivate at zero as,
 
 \begin{equation}
  ( \tilde{L}_1 )_{ij}_ =
   \begin{cases}
-    1   & dL > \lambda \\
-    -1  & dL < \lambda \\
+    1   & \frac{d\epsilon(\mathbf{L})}{d\mathbf{L}} > \lambda \\
+    -1  & \frac{d\epsilon(\mathbf{L})}{d\mathbf{L}} < \lambda \\
   \end{cases}
 \end{equation}
 
@@ -84,6 +84,8 @@ When $L{ij}$ is zero the derivate of the $l_1$ norm is singular. We define its d
 ## Features
 We want to use features that have at least a weak semantic meaning to a human observer and that are as generic as possible. Affordances can from a human perspective be understood in both global and local properties of the object we therefore try to cover both. Due to lack of space we will provide a short list with motivations when needed.
 
+\small
+
 * **Object Volume** - The volume of the convex hull enclosing the object.
 * **Primitive Shape** - Scoring function for how well the object resembles spherical, cylindrical, or cuboid form.
 * **Elongatedness** - The ratio of the minor axes of the object to the major axis. 
@@ -94,5 +96,6 @@ We want to use features that have at least a weak semantic meaning to a human ob
 * **Bag of Words Histogram over Fast Point Feature Histogram (FPFH)** \cite{Rusu:2009hf} - We encode the local curvature of the object using a Bag of Words model over the FPFH features of the point cloud using a small set of 40 keywords. We then extract the histogram of the keywords for the object. 
 * **Texture** - We employ a similar approach to \cite{Cimpoi:2015eg} by learning a Fisher vector representation from dense SIFTs over a set of labeled images containing the following textures: glass, carton, porcelain, metal, plastic and wood. We also extract the output of the fifth layer of a GooleLeNet CNN concatenating it with the Fisher vectors. These two features complement each other, the Fisher vector trained on textures, and the GooleLeNet in that certain objects are more likely to be made of a specific material. We use the final feature vector to train 6 1-against-$K$ linear SVMs. The output from the 6 SVMs when classifying the object can be considered as a score of how similar each object is to one of the textures and we use this as the feature vector. 
 
+\normalsize
 
 

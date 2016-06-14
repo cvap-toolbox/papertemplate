@@ -27,18 +27,18 @@ The approach most similar to ours is by Hermans et al. \cite{Hermans:2011vz} and
 
 Like the afformentioned papers we also make use of discretization in the creation of certain features but as it always means a trade-off between discarding and keeping certain information we try to avoid it when possible. This means that we let the algorithm make the choice of what is needed for recognition.  And contrary to \cite{Hermans:2011vz, JieSun:2010kv} the information explaining the affordance is not hidden in the object category or attributes but is reflected in the transform and directly relatable to the input. 
 
-As mentioned above we are not interested in object categorization and individuation as we think this is a hinderance to truly understanding affordances. There are cases of humans with lesions affecting object recognition which are able to perfectly perform manuplative actions [Goodale et a1 1991]. Instead we want to formulate the understanding around the feature transform. This removes the need for object category knowledge and enables the agent to, in the case of a local feature, map the affordance to a specific portion of the object. The transform can also help the agent to understand which affordances are most similar by comparing the distances between the transforms. Another benefit of learning the similarity measures is that the human demonstrator can show the robot which objects are similar, creating an intra category ordering, as opposed to it using a distance measure to formulate the initial similarity. 
+As mentioned above we are not interested in object categorization and individuation as we think this is a hinderance to truly understanding affordances. In humans there are cases where damage to the primary visual cortex affected object recognition but not manipulation \cite{Goodale:1991hc}. This suggests that discrimative features used in recognition might be redunant in affordance recognition. We instead want to formulate the understanding around the feature transform. This removes the need for object category knowledge and enables the agent to, in the case of a local feature, map the affordance to a specific portion of the object. The transform can also help the agent to understand which affordances are most similar by comparing the distances between the transforms. Another benefit of learning the similarity measures is that the human demonstrator can show the robot which objects are similar, creating an intra category ordering, as opposed to it using a distance measure to formulate the initial similarity. 
 
 
-\cite{Nikandrova:2015uu}
-\cite{Thomaz:2009uk}
-\cite{Griffith:2009cm}
 \cite{Stark:2008bx}
 
 
 
 \begin{comment}
 
+\cite{Nikandrova:2015uu}
+\cite{Thomaz:2009uk}
+\cite{Griffith:2009cm}
 ONE IDEA IS TO USE SEVERAL BOW REPRESENTATIONS AT DIFFERENT RESOLUTIONS!!
 
 
