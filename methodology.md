@@ -80,7 +80,6 @@ When $L_{ij}$ is zero the derivate of the $l_1$ norm is singular. We define its 
 [We should maybe investigate if the penalization has the same effect on the eigenvalues as ridge regression ]
 \end{comment}
 
-
 ## Features
 We want to use features that have at least a weak semantic meaning to a human observer and that are as generic as possible. Affordances can from a human perspective be understood in both global and local properties of the object we therefore try to cover both. Due to lack of space we will provide a short list with motivations when needed.
 
