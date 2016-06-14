@@ -53,14 +53,14 @@ The modified elastic net regularized loss function now has the form,
 \begin{equation}
 \label{lossfun}
 \begin{aligned}
-& \epsilon_{new}(\mathbf{L}) = \lambda_1 \sum_{j=1}^{D} \left\lVert L_j  \right\rVert_1 + \lambda_2 \sum_{j=1}^{D} \left\lVert L_j  \right\rVert_{2}^{2} +   \epsilon(\mathbf{L}) \\
+& \epsilon_{new}(\mathbf{L}) = \beta(\lambda_1 \sum_{j=1}^{D} \left\lVert L_j  \right\rVert_1 + \lambda_2 \sum_{j=1}^{D} \left\lVert L_j)  \right\rVert_{2}^{2} + \epsilon(\mathbf{L}) \\
 \end{aligned}
 \end{equation}
 
 \begin{equation}
 \label{lossfunderivative}
 \begin{aligned}
-& \frac{d\epsilon_{new}(\mathbf{L})}{d\mathbf{L}} =   \lambda_1  \tilde{L}_1 + \lambda_2  \tilde{L}_2 + \frac{d\epsilon(\mathbf{L})}{d\mathbf{L}} \\
+& \frac{d\epsilon_{new}(\mathbf{L})}{d\mathbf{L}} = \beta(\lambda_1  \tilde{L}_1 + \lambda_2  \tilde{L}_2) + \frac{d\epsilon(\mathbf{L})}{d\mathbf{L}} \\
 & (\tilde{L}_1)_{ij} = sign(L_{ij}), \; \; \; (\tilde{L}_2)_{ij} = 2 L_{ij}.
 \end{aligned}
 \end{equation}
@@ -91,7 +91,7 @@ We want to use features that have at least a weak semantic meaning to a human ob
 * **Elongatedness** - The ratio of the minor axes of the object to the major axis. 
 * **Opening** - Wether our opening detection algorithm detects an opening.
 * **Intensity and Gradient Filters** - We apply gradient filters of first, second order over the 2D window containing the object along, in addition we extract the intensity values of the image. Since pixels correspond to the points on the point cloud of the object we map the values on to each point. We then compute a count normalized histograms (CNH) for all the points of the object for each of the filter values and the intensity values.
-* **Color Quantization** - We segment the image using the segmentation algorithm of \cite{Felzenszwalb:2004vi} and encode each patch with its closest color from a chart of 15 different colors, in CIELab space. Each point in the point cloud of the object thus gets a quantized color assigned to it. We then form a CNH over all the points of the object.  
+* **Color Quantization** - We segment the image using the segmentation algorithm of \cite{Felzenszwalb:2004vi} and encode each patch with its closest color from a chart of 15 different colors, in CIELab space. Each point in the point cloud of the object thus gets a quantized color assigned to it. We then form a CNH over all the points of the object.
 * **Color Uniformity** - We compute the entropy, mean and variance of the color quantization.
 * **Bag of Words Histogram over Fast Point Feature Histogram (FPFH)** \cite{Rusu:2009hf} - We encode the local curvature of the object using a Bag of Words model over the FPFH features of the point cloud using a small set of 40 keywords. We then extract the histogram of the keywords for the object. 
 * **Texture** - We employ a similar approach to \cite{Cimpoi:2015eg} by learning a Fisher vector representation from dense SIFTs over a set of labeled images containing the following textures: glass, carton, porcelain, metal, plastic and wood. We also extract the output of the fifth layer of a GooleLeNet CNN concatenating it with the Fisher vectors. These two features complement each other, the Fisher vector trained on textures, and the GooleLeNet in that certain objects are more likely to be made of a specific material. We use the final feature vector to train 6 1-against-$K$ linear SVMs. The output from the 6 SVMs when classifying the object can be considered as a score of how similar each object is to one of the textures and we use this as the feature vector. 

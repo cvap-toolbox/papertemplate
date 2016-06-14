@@ -126,14 +126,14 @@ The modified elastic net regularized loss function now has the form,
 \begin{equation}
 \label{lossfun}
 \begin{aligned}
-& \epsilon_{new}(\mathbf{L}) = \lambda_1 \sum_{j=1}^{D} \left\lVert L_j  \right\rVert_1 + \lambda_2 \sum_{j=1}^{D} \left\lVert L_j  \right\rVert_{2}^{2} +   \epsilon(\mathbf{L}) \\
+& \epsilon_{new}(\mathbf{L}) = \beta(\lambda_1 \sum_{j=1}^{D} \left\lVert L_j  \right\rVert_1 + \lambda_2 \sum_{j=1}^{D} \left\lVert L_j)  \right\rVert_{2}^{2} + \epsilon(\mathbf{L}) \\
 \end{aligned}
 \end{equation}
 
 \begin{equation}
 \label{lossfunderivative}
 \begin{aligned}
-& \frac{d\epsilon_{new}(\mathbf{L})}{d\mathbf{L}} =   \lambda_1  \tilde{L}_1 + \lambda_2  \tilde{L}_2 + \frac{d\epsilon(\mathbf{L})}{d\mathbf{L}} \\
+& \frac{d\epsilon_{new}(\mathbf{L})}{d\mathbf{L}} = \beta(\lambda_1  \tilde{L}_1 + \lambda_2  \tilde{L}_2) + \frac{d\epsilon(\mathbf{L})}{d\mathbf{L}} \\
 & (\tilde{L}_1)_{ij} = sign(L_{ij}), \; \; \; (\tilde{L}_2)_{ij} = 2 L_{ij}.
 \end{aligned}
 \end{equation}
@@ -193,7 +193,7 @@ provide a short list with motivations when needed.
   patch with its closest color from a chart of 15 different colors, in
   CIELab space. Each point in the point cloud of the object thus gets a
   quantized color assigned to it. We then form a CNH over all the points
-  of the object.\\
+  of the object.
 \item
   \textbf{Color Uniformity} - We compute the entropy, mean and variance
   of the color quantization.

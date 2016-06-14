@@ -1,26 +1,10 @@
 # Experiments
-In evaluating our approach, we want to verify the following:
-
-* How our method performs compared to k-NN
-* That the ordering of the nearest neighbors is reasonable
-* That the features that LMCA picks out as important for an affordance resonates with what could be expected for the affordance. This would mean that the robot has actually grounded semantic meaning in its sensory input. 
-* That the correlations described by $M$ resonates with what could be expected for the affordance.
-
-In addition we are interested in investigating the similarity between affordances by comparing distances between the covariance matrices, $M$, for the different affordances. Similar affordances should be close and be a good initial guess for learning a new affordance. 
-
-Finally we are interested in mapping local features to the parts of the objects. For an example, for hangable objects we would like our metric to discover the "hook" part of object. This will let the robot detect salient parts of the object and reflect on how that part can be used. 
 
 ## Data Collection
-We perform the collection of the object data using a Kinect camera with objects placed on a flat surface in front of the robot. The robot observes and segments out the object and records features over the object. Each object is associated with with a $D$-dimensional binary vector encoding the affordances. 
+We perform the collection of object data using a Kinect camera with objects placed on a flat surface in front of the robot. The robot observes and segments out the object and then records features over it. Each object is associated with a binary label indicating if it affords an action or not. In addition the robot might be provided with a k-NN ordering for each of the objects in the demonstrated set, where $k$ can vary for each object and $k=1,2,3..$. 
 
 ## Learning the Distance Metric
-We preprocess the non-histogram features by centering and scaling to unit variance. To evaluate the learning we run the penalized LMCA, non-penalized LMCA, LMNN and k-NN a 100 times for $5$ neighbors, using random splits of the collected data with a ratio of 70% training and 30% test data. We also make sure that each split contains at least 25% positive and negative examples. The reason for this lies in the formulation of LMNN that allows instances some slack in fulfilling the optimization constraints. The gradient descent optimization is thus prone to allowing the smaller class to violate the constraints while optimizing for the bigger class. If the positive example’s relevant features have been erased the invariant features becomes hard to detect.
+We preprocess the non-histogram features by centering and scaling to unit variance. To evaluate the learning we run the optimization a 100 times using random splits of the collected data with a ratio of $70/30$ training-test data. The biggest drawback of the LMCA algorithm is that the parameter learning is done by cross-validation. Due to the non-convexity and small data point to parameter ratio the LMCA is quite sensitive to initialization and overfits easily. Cross-validation thus is best done using leave-one-out which is quite costly even though we use a constraint activation similar to \cite{Weinberger:2009to} to reduce computation.
 
-As can be seen in Figure \ref{fig:knnvslmnn} penalized LMNN is superior to k-NN performing better, roughly by 3-7% for all grasps classes. The curves for the class agreement as a function of the nearest neighbor in Figure \ref{fig:knnvslmnn_distance}, are also consistent for the LMNN while k-NN declines quite rapidly as the order increases. Further on, k-NN has much more variance. 
+A less expensive approach is to keep track of the ratio between the two error terms and the k-NN leave-one-out error on the training dataset. A high ratio and zero leave-one-out error almost always indicates overfitting. As for the $\beta$ parameter we can again think of the analogy between $D$ regression functions, since we have standardized the dataset a good initial guess is $\beta=D$.
 
-## Affordance Invariant Features and Feature Correlations
-Feature selection in our context means that the LMNN diagonal have low to zero values for irrelevant features and high for relevant. One way of analyzing the selection is to look at the magnitude value of the column vectors of $L$ and standard deviation across the 100 runs.
-
-## Salient Point Illustrations
-
-## Affordance Metrics Distances
