@@ -134,14 +134,15 @@ The modified elastic net regularized loss function now has the form,
 \label{lossfunderivative}
 \begin{aligned}
 & \frac{d\epsilon_{new}(\mathbf{L})}{d\mathbf{L}} = \beta(\lambda_1  \tilde{L}_1 + \lambda_2  \tilde{L}_2) + \frac{d\epsilon(\mathbf{L})}{d\mathbf{L}} \\
-& (\tilde{L}_1)_{ij} = sign(L_{ij}), \; \; \; (\tilde{L}_2)_{ij} = 2 L_{ij}.
+& (\tilde{L}_1)_{ij} = sign(L_{ij}), \; \; \; (\tilde{L}_2)_{ij} = 2 L_{ij},
 \end{aligned}
 \end{equation}
 
 \normalsize
 
-When \(L_{ij}\) is zero the derivate of the \(l_1\) norm is singular. We
-define its derivate at zero as,
+where \(\lambda_1 + \lambda_2 = 1\). When \(L_{ij}\) is zero the
+derivate of the \(l_1\) norm is singular. We define its derivate at zero
+as,
 
 \begin{equation}
  ( \tilde{L}_1 )_{ij}_ =
