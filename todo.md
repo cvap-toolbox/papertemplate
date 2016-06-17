@@ -1,8 +1,6 @@
 # TODO
 
-* Understand Fisher Vectors.
-* Try out the given code on my collected dataset.
-* **Decide on the USP for this paper. Why is this important work?**
+* Read paper on Fisher Vectors.
 
 ## Priority
 
@@ -11,14 +9,30 @@
 ## Abstract
 
 ## Introduction & Related Work
-- Edit & Rewrite.
+* Write a paragraph about the deep feature paper on affordances.
+* Write about the Stark paper.
+* See if there is something to cut.
 
 ## Methodology
-- Add picture explaining metric learning approach
-- Tidy-up
+* Check that the derivative for the $l_1$ norm is properly defined. 
 
 ## Experiments
 
-## Conclusion
+### Accuracy For 30/70
+* Learn all optimal parameters for good classification and sound feature selection. 
+* Do a final run. 
+* Collect and insert numbers into paper tables.
+* Put in feature magnitude weights plots in paper. 
 
-## Future Work
+### As a Function of Number of Exemplars
+* Do a test of what accurcacy the optimal parameters for the full case gives.
+* Think about a measure of change over number of exemplars.
+
+### Human vs Robot Labeling
+# 
+
+
+## Conclusion & Future Work
+* Write it.
+
+

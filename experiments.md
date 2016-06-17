@@ -34,13 +34,13 @@ We preprocess the features by centering and scaling to unit variance. To evaluat
 A less expensive approach is to keep track of the ratio between the two error terms and the k-NN leave-one-out error on the training dataset. A low ratio and zero leave-one-out error almost always indicates overfitting. As for the $\beta$ parameter we can again think of the analogy between $D$ regression functions, since we have standardized the dataset a good initial guess is $\beta=D$.
 
 ## Affordance Classification
-Affordance classification accuracy and standard deviation can be found in table \ref{fig:affordance_table1}. As we can see the accuracy is above $80%$ for most of the affordances, LMCA outperforming or scoring equal to k-NN on all affordances. The conclusion we can draw from this is that classification is relatively simple when we have the right representation and even more simple when exactly the right features are selected. Further on, we recognize that  
+Affordance classification accuracy and standard deviation can be found in table \ref{fig:affordance_table1}. As we can see the accuracy is above $80\%$ for most of the affordances, LMCA outperforming or scoring equal to k-NN on all affordances. The conclusion we can draw from this is that classification is relatively simple when we have the right representation and even more simple when exactly the right features are selected. Further on, we recognize that  
 
 ### Human Provided k-NN 
-LMCA can use any distance measure for computing the nearest neighbors that are used in Eq.\ref{lossfun} to learn the metric. We use the $l_2$ distance for initialization, as that is what is used in the loss function. Another approach, is to let a human demonstrator set the $k$ nearest neighbors for each object. This might lead to an ordering of the neighbors that does not reflect the $l_2$ distance but will provide more valuable information into what features are relevant. 
+LMCA can use any distance measure for computing the $k$ nearest neighbors graph that is used in Eq.\ref{lossfun} to learn the metric. We use the $l_2$ distance for initialization, as that is what is used in the loss function. Another approach, is to let a human demonstrator set the $k$ nearest neighbors for each object. This might lead to an ordering of the neighbors that does not reflect the $l_2$ distance but will provide more valuable information into what features are relevant. 
 
 ### Incremental Learning
-As mentioned in the introduction experiments in \cite{POSNER:1967ef} and by others using distorted patterns have shown that the categorization process for humans happens in a continuum. In the beginning individual exemplars are remembered but as more examples are introduced a generalization process takes place. We are therefore interested in how the affordance transforms changes as more examples are introduced.
+As mentioned in the introduction experiments by \cite{POSNER:1967ef} and others using distorted patterns have shown that the categorization process for humans happens in a continuum. In the beginning individual exemplars are remembered but as more examples are introduced a generalization process takes place. We are therefore interested in how the affordance transforms changes as more examples are introduced.
 
 
 
